@@ -18,13 +18,13 @@ import java.util.*;
         public static Node node;
         static Node prevNode = null;
         static Node headNode = null;
-        static void flattenBTToSkewed(Node root)
+        static void flatten(Node root)
         {
             if(root == null)
             {
                 return;
             }
-            flattenBTToSkewed(root.left);
+            flatten(root.left);
             Node rightNode = root.right;
             Node leftNode = root.left;
             if(headNode == null)
@@ -39,17 +39,17 @@ import java.util.*;
                 root.left = null;
                 prevNode = root;
             }
-            flattenBTToSkewed(rightNode);
+            flatten(rightNode);
             }
 
-            static void traverseRightSkewed(Node root)
+            static void rightskew(Node root)
         {
             if(root == null)
             {
                 return;
             }
             System.out.print(root.val + " ");
-            traverseRightSkewed(root.right);
+            rightskew(root.right);
         }
         public static void main (String[] args)
         {
@@ -59,7 +59,7 @@ import java.util.*;
             tree.node.right = new Node(60);
             tree.node.left.left = new Node(10);
             tree.node.right.left= new Node(55);
-            flattenBTToSkewed(node);
-            traverseRightSkewed(headNode);
+            flatten(node);
+            rightskew(headNode);
         }
     }
